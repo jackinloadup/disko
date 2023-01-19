@@ -309,6 +309,7 @@ rec {
             device = config.device;
             fsType = config.fsType;
             options = config.mountOptions;
+            neededForBoot = true;
           };
         }];
         description = "NixOS configuration";
@@ -398,6 +399,7 @@ rec {
               device = dev;
               fsType = "btrfs";
               options = config.mountOptions;
+              neededForBoot = true;
             };
           })
         ];
@@ -1194,6 +1196,7 @@ rec {
               device = config.name;
               fsType = "zfs";
               options = config.mountOptions ++ lib.optional ((config.options.mountpoint or "") != "legacy") "zfsutil";
+              neededForBoot = true;
             };
           })
         ];
@@ -1302,6 +1305,7 @@ rec {
               device = "${zpool}/${config.name}";
               fsType = "zfs";
               options = config.mountOptions ++ lib.optional ((config.options.mountpoint or "") != "legacy") "zfsutil";
+              neededForBoot = true;
             };
           });
         description = "NixOS configuration";
